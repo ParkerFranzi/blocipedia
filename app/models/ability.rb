@@ -12,7 +12,8 @@ class Ability
 
     # Premium Member
     if user.role? :premium
-        can :manage, Post, :user_id => user.id
+      can :manage, Post, :user_id => user.id
+    end
 
     # Moderators can delete any post
     if user.role? :moderator
