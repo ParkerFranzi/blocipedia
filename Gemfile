@@ -11,6 +11,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem "quiet_assets", "~> 1.0.2"
 end
 
 
