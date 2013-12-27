@@ -1,14 +1,12 @@
-<h2>Sign up</h2>
-
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f| %>
   <%= devise_error_messages! %>
-<div class="control-group">
-  <%= f.label :name, class: 'control-label' %>
-  <div class="controls">
-    <%= f.label :name, :autofocus => true %>
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :autofocus => true %>
+    </div>
   </div>
-</div>
-<div class="control-group">
+  <div class="control-group">
     <%= f.label :email, class: 'control-label' %>
     <div class="controls">
       <%= f.email_field :email %>
@@ -36,4 +34,4 @@
       <%= render "devise/shared/links" %>
     </div>
   </div>
-<% end %>
+  <% end %>
