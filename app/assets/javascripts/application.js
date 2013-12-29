@@ -13,6 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require 'epiceditor'
+//= require marked
 //= require_tree .
 
+$(document).ready(function() { 
+  $("#post_body").keyup(function() {
+    $("#preview").html(marked($("#post_body").val()));
+
+  });
+ });

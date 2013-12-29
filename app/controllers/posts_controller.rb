@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:id])
+    @post = current_user.posts.build(params[:post])
     authorize! :create, @post, message: "You need to be signed up to do that."
     if @post.save
       flash[:notice] = "Post was saved"
@@ -37,6 +37,19 @@ class PostsController < ApplicationController
     else
       flash[:error] = "There was an error saving. Please try again"
       render :edit
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    title = @post.title
+    authorize! :destroy, @post, message: "You need to own that post to delete it."
+    if @post.destroy
+      flash[:notice] = "\"#{title}\" was deleted successfully."
+      redirect_to posts_path
+    else
+      flash[:error] = "There was an error deleting the post."
+      render :show
     end
   end
 end
