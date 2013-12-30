@@ -2,23 +2,25 @@
   <h1>Blocipedia</h1>
   <p>Blocipedia is a resource for learning about specific topics!</p>
   <p>
+    <% if current_user %>
+      <%= link_to "Upgrade to Premium", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+    <% else %>
       <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary btn-large' %> or 
       <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-large' %> or
       <%= link_to "Upgrade to Premium", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+    <% end %>
   </p>
 </div>
 
 <div class="row">
-  <div class="span4">
-    <h2>Amazing Point 1</h2>
-    <p>This is some content about how great point 1 is. You should really use Bloccipedia because of it! No seriously, it really is amazing and great and you should really check it out.</p>
+  <div class="span6">
+    <h2>Free User</h2>
+    <p>Create Public Wiki's for the world to see!</p>
+    <%= link_to "Free User", new_user_registration_path, class: 'btn btn-primary btn-large' %>
   </div>
-  <div class="span4">
-    <h2>Amazing Point 2</h2>
-    <p>This is some content about how great point 2 is. You should really use Blocipedia because of it! No seriously, it really is amazing and great and you should really check it out.</p>
-  </div>
-  <div class="span4">
-    <h2>Amazing Point 3</h2>
-    <p>This is some content about how great point 3 is. You should really use Blocipedia because of it! No seriously, it really is amazing and great and you should really check it out.</p>
+  <div class="span6">
+    <h2>Premium User</h2>
+    <p>Allows the creation of private wikis!</p>
+    <%= link_to "Premium User", new_user_registration_path, class: 'btn btn-primary btn-large' %>
   </div>
 </div>
