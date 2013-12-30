@@ -25,6 +25,6 @@ class Ability
       can :manage, :all
     end
 
-    can :read, :all
+    can :read, Post, public: true
   end
 end

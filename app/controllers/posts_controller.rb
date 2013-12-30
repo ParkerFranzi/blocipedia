@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(params[:post])
     authorize! :create, @post, message: "You need to be signed up to do that."
     if @post.save
-      flash[:notice] = "Post was saved"
+      flash[:notice] = "Wiki was saved"
       redirect_to @post
     else
       flash[:error] = "There was an error saving. Please try again"
@@ -25,14 +25,14 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    authorize! :edit, @post, message: "You need to own the post to edit it."
+    authorize! :edit, @post, message: "You need to own the Wiki to edit it."
   end
 
   def update
     @post = Post.find(params[:id])
-    authorize! :update, @post, message: "You need to own the post to edit it"
+    authorize! :update, @post, message: "You need to own the Wiki to edit it"
     if @post.update_attributes(params[:post])
-      flash[:notice] = "Post was updated"
+      flash[:notice] = "Wiki was updated"
       redirect_to @post
     else
       flash[:error] = "There was an error saving. Please try again"
@@ -43,12 +43,12 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     title = @post.title
-    authorize! :destroy, @post, message: "You need to own that post to delete it."
+    authorize! :destroy, @post, message: "You need to own that Wiki to delete it."
     if @post.destroy
       flash[:notice] = "\"#{title}\" was deleted successfully."
       redirect_to posts_path
     else
-      flash[:error] = "There was an error deleting the post."
+      flash[:error] = "There was an error deleting the Wiki."
       render :show
     end
   end
