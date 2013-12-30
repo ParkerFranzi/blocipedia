@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 10)
+    @posts = Post.visible_to(current_user).paginate(page: params[:page], per_page: 10)
   end
 
   def show
     @post = Post.find(params[:id])
+    authorize! :read, @post, message: "You need to be signed-in to do that."
   end
 
   def new
