@@ -11,10 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140103103027) do
+ActiveRecord::Schema.define(:version => 20140103221246) do
 
   create_table "collaborators", :force => true do |t|
     t.boolean  "access"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -31,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20140103103027) do
 
   add_index "posts", ["collaborator_id"], :name => "index_posts_on_collaborator_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "email"
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.string   "stripe_customer_token"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
