@@ -23,8 +23,10 @@ class Ability
     # Admins can do anything
     if user.role? :admin
       can :manage, :all
+      can :make_private
     end
 
     can :read, Post, public: true
+
   end
 end
