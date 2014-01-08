@@ -22,8 +22,9 @@ class SubscriptionsController < ApplicationController
     cu = Stripe::Customer.retrieve(current_user.subscription.stripe_customer_token)
     if cu.cancel_subscription
       current_user.update_attribute(:role, 'member')
+      current_user.subscription.destroy
       redirect_to root_path, :notice => "Thank you for trying Premium"
-      #Subscription.destroy(current_user.subscription.stripe_customer_token)
+      
     else
       flash[:notice] = "Sorry canceling your subscription failed."
       render :edit

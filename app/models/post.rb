@@ -3,7 +3,8 @@ class Post < ActiveRecord::Base
   friendly_id :title, use: [:slugged, :history]
   attr_accessible :body, :title, :public
   belongs_to :user
-  has_many :collaborators
+  has_many :collaborations
+  has_many :users, through: :collaborations
 
   default_scope order('created_at DESC')
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) }
