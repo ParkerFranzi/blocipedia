@@ -14,7 +14,10 @@
         <li><%= link_to "Wikis", posts_path %></li>
         <div class="pull-right user-info">
           <% if current_user %>
-             Hello <%= link_to (current_user.name || current_user.email), current_user %>! 
+            Hello <%= link_to (current_user.name || current_user.email), current_user %>! 
+            <% if cannot? :make_private, @user %>
+              <%= link_to "Upgrade to Premium", new_subscription_path, class: 'btn btn-primary btn-small' %>
+            <% end %>
               <%= link_to edit_user_registration_path, class: 'btn btn-mini' do %>
                 <i class="icon-user"></i>
               <% end %>

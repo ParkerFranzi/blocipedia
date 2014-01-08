@@ -3,11 +3,12 @@
   <p>Blocipedia is a resource for learning about specific topics!</p>
   <p>
     <% if current_user %>
-      <%= link_to "Upgrade to Premium", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+      <% if cannot? :make_private, @user %>
+        <%= link_to "Upgrade to Premium", new_subscription_path, class: 'btn btn-primary btn-large' %>
+      <% end %>
     <% else %>
       <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary btn-large' %> or 
-      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-large' %> or
-      <%= link_to "Upgrade to Premium", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-large' %>
     <% end %>
   </p>
 </div>
@@ -16,11 +17,15 @@
   <div class="span6">
     <h2>Free User</h2>
     <p>Create Public Wiki's for the world to see!</p>
-    <%= link_to "Free User", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+    <% if cannot? :create, Post %>
+      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+    <% end %>
   </div>
   <div class="span6">
     <h2>Premium User</h2>
     <p>Allows the creation of private wikis!</p>
-    <%= link_to "Premium User", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+    <% if cannot? :create, Post %>
+      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-large' %>
+    <% end %>
   </div>
 </div>

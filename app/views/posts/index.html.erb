@@ -1,6 +1,5 @@
 <h1>All Wikis</h1>
 
-<%= link_to "Upgrade to Premium", new_subscription_path, class: 'btn btn-primary btn-large' %>
 <% if can? :create, Post %>
   <%= link_to "New Wiki", new_post_path, class: 'btn btn-primary btn-mini' %>
 <% end %>
