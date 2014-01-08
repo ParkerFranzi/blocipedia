@@ -5,6 +5,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if request.path != post_path(@post)
+      redirect_to @post, status: :moved_permanently
+    end
     authorize! :read, @post, message: "You need to be signed-in to do that."
   end
 
