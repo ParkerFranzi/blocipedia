@@ -23,12 +23,6 @@ ActiveRecord::Schema.define(:version => 20140108225502) do
   add_index "collaborations", ["post_id"], :name => "index_collaborations_on_post_id"
   add_index "collaborations", ["user_id"], :name => "index_collaborations_on_user_id"
 
-  create_table "collaborators", :force => true do |t|
-    t.boolean  "access"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
     t.integer  "sluggable_id",                 :null => false
@@ -49,16 +43,14 @@ ActiveRecord::Schema.define(:version => 20140108225502) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
-    t.boolean  "public",          :default => true
+    t.boolean  "public",     :default => true
     t.text     "body"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "user_id"
-    t.integer  "collaborator_id"
     t.string   "slug"
   end
 
-  add_index "posts", ["collaborator_id"], :name => "index_posts_on_collaborator_id"
   add_index "posts", ["slug"], :name => "index_posts_on_slug"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
