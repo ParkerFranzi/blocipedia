@@ -15,7 +15,7 @@
         <div class="pull-right user-info">
           <% if current_user %>
             Hello <%= link_to (current_user.name || current_user.email), current_user %>! 
-            <% if cannot? :make_private, @user %>
+            <% if current_user.role != 'premium' %>
               <%= link_to "Upgrade to Premium", new_subscription_path, class: 'btn btn-primary btn-small' %>
             <% end %>
               <%= link_to edit_user_registration_path, class: 'btn btn-mini' do %>

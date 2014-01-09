@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :stripe_customer_token
   has_many :posts
+  has_many :collaborations
+  has_many :post_collaborations, through: :collaborations, source: :post
   has_one :subscription
 
   before_create :set_member

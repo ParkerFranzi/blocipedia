@@ -3,7 +3,7 @@
   <p>Blocipedia is a resource for learning about specific topics!</p>
   <p>
     <% if current_user %>
-      <% if cannot? :make_private, @user %>
+      <% if current_user.role == 'member' %>
         <%= link_to "Upgrade to Premium", new_subscription_path, class: 'btn btn-primary btn-large' %>
       <% end %>
     <% else %>
