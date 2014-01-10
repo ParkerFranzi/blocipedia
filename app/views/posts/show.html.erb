@@ -10,4 +10,11 @@
   <% end %>
 
   <p><%= markdown @post.body %></p>
+  <%= form_for @post do %>
+    <%= @users.each do |user| %>
+      <%= check_box_tag :user_ids, user.id, @post.users.include?(user), name: 'post[user_ids][]'%>
+      <%= label_tag :user_ids, user.email %>
+    <% end %>
+    <%= submit_tag %>
+  <% end %>
 </div>

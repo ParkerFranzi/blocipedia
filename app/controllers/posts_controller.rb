@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @users = User.all
     if request.path != post_path(@post)
       redirect_to @post, status: :moved_permanently
     end
