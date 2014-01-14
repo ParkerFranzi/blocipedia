@@ -30,6 +30,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @users = User.all
     authorize! :edit, @post, message: "You need to own the Wiki to edit it."
   end
 
