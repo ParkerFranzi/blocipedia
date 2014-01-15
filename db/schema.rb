@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140108225502) do
+ActiveRecord::Schema.define(:version => 20140110225603) do
 
-  create_table "collaborations", :force => true do |t|
+  create_table "collaboration", :force => true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "collaborations", ["post_id"], :name => "index_collaborations_on_post_id"
-  add_index "collaborations", ["user_id"], :name => "index_collaborations_on_user_id"
+  add_index "collaboration", ["post_id"], :name => "index_collaborations_on_post_id"
+  add_index "collaboration", ["user_id"], :name => "index_collaborations_on_user_id"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20140108225502) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "post_collaborations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "post_collaborations", ["post_id"], :name => "index_post_collaborations_on_post_id"
+  add_index "post_collaborations", ["user_id"], :name => "index_post_collaborations_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.string   "title"

@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 group :development do
   gem 'sqlite3'
+  gem 'pry-rails'
   gem "quiet_assets", "~> 1.0.2"
 end
 
