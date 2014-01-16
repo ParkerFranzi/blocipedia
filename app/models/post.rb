@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   default_scope order('created_at DESC')
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) }
 
-  #validates :title, length: { minimum: 2 }, presence: true
-  #validates :body, length: { minimum: 5 }, presence: true
+  validates :title, length: { minimum: 2 }, presence: true
+  validates :body, length: { minimum: 5 }, presence: true
   validates :user, presence: true  
 end

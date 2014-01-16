@@ -12,7 +12,9 @@ class Ability
 
     # Premium Member
     if user.role? :premium
-      #can :edit, user.shared_posts
+      can :update, user.shared_posts
+      can :edit, user.shared_posts
+      #post.user_ids
       can :make_private, User
     end
 

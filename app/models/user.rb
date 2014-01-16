@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :stripe_customer_token, :user_ids
   has_many :posts
   has_many :post_collaborations
-  has_many :shared_posts, through: :collaborations, source: :post
+  has_many :shared_posts, through: :post_collaborations, source: :post
   has_one :subscription
 
   before_create :set_member
