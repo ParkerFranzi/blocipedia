@@ -7,12 +7,12 @@
 # Ignore bundler config
 /.bundle
 
-# Ignore Stripe API Keys
-/config/initializers/stripe.rb
-
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore application configuration
+/config/application.yml
