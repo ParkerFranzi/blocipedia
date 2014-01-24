@@ -6,5 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-u = User.new(email: 'beaugaines@yahoo.com', password: 'password', password_confirmation: 'password')
+# useful way to have a default record every time you need to db:reset
+
+u = User.new(email: 'guy@guy.com', password: 'password', password_confirmation: 'password')
 u.skip_confirmation! and u.save!
