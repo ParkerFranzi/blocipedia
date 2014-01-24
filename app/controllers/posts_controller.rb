@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
+
+  before_filter :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
     @posts = Post.visible_to(current_user).paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @post = Post.find(params[:id])
     @users = User.all
     if request.path != post_path(@post)
       redirect_to @post, status: :moved_permanently
@@ -29,13 +31,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
     @users = User.all
     authorize! :edit, @post, message: "You need to own the Wiki to edit it."
   end
 
   def update
-    @post = Post.find(params[:id])
     authorize! :update, @post, message: "You need to own the Wiki to edit it"
     if @post.update_attributes(params[:post])
       flash[:notice] = "Wiki was updated"
@@ -47,7 +47,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     title = @post.title
     authorize! :destroy, @post, message: "You need to own that Wiki to delete it."
     if @post.destroy
@@ -58,4 +57,11 @@ class PostsController < ApplicationController
       render :show
     end
   end
+
+  private
+
+  def set_post   # this method just reduces duplication in yr code
+    @post = Post.find(params[:id])
+  end
+  
 end
