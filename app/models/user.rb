@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_one :subscription
 
   before_create :set_member
-  #attr_accessible :title, :body
 
   ROLES = %w[member premium moderator admin]
   
