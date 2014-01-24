@@ -19,6 +19,5 @@
 $(document).ready(function() { 
   $("#post_body").keyup(function() {
     $("#preview").html(marked($("#post_body").val()));
-
   });
  });
