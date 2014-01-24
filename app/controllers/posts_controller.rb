@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @users = User.all
     if request.path != post_path(@post)
       redirect_to @post, status: :moved_permanently
     end
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @users = User.all
     authorize! :edit, @post, message: "You need to own the Wiki to edit it."
   end
 

@@ -12,8 +12,8 @@ class Ability
 
     # Premium Member
     if user.role? :premium
+      #can :edit, user.shared_posts
       can :make_private, User
-      can :hide_premium, User 
     end
 
     # Moderators can delete any post

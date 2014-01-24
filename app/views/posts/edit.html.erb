@@ -1,11 +1,35 @@
 <h1>Edit Post</h1>
-
 <div class="row">
   <div class="span6">
     <%= render partial: 'form', locals: { post: @post } %>
   </div>
-  <div class="span6">
-    <h2>Preview</h2>
+    <h1>Preview</h1>
     <section id="preview">
+</div>
+<div class="row">
+  <div class="span6">
+  <% if current_user && current_user.role != 'member' %>
+    <b>User List</b>
+    <%= form_for @post do %>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th colspan="30">Email</th>
+          <th>Collaborator</th>
+        </tr>
+      <% @users.each do |user| %>
+        <% if user.role == 'premium' && user.email != current_user.email %>
+        <tr>
+          <td><center><%= user.name %></td></center>
+          <td colspan="30"><center><%= user.email %></td></center>
+          <td><center><%= check_box_tag :user_ids, user.id, @post.users.include?(user), name: 'post[user_ids][]'%></center></td>
+          <%#= label_tag :user_ids, user.email %>
+        </tr>
+        <% end %>
+      <% end %>
+      </table>
+      <%= submit_tag %>
+    <% end %>
+  <% end %>
   </div>
 </div>

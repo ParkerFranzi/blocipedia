@@ -5,9 +5,6 @@
     <h4 class="media-heading">
       <%= link_to (markdown post.title), [post] %>
     </h4>
-    <small>
-      submitted <%= time_ago_in_words(post.created_at) %> ago by
-      <%= link_to post.user.name, post.user %><br/>
-    </small>
+
   </div>
 </div>

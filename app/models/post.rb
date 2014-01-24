@@ -1,16 +1,19 @@
 class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
-  attr_accessible :body, :title, :public
+  attr_accessible :body, :title, :public, :user_ids, :user_ids => []
   belongs_to :user
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0958604b7b68f936982609547f1aff0c33dbb025
   has_many :post_collaborations
   has_many :users, through: :post_collaborations
 
   default_scope order('created_at DESC')
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) }
 
-  # validates :title, length: { minimum: 5 }, presence: true
-  # validates :body, length: { minimum: 20 }, presence: true
-  # validates :user, presence: true  
+  #validates :title, length: { minimum: 2 }, presence: true
+  #validates :body, length: { minimum: 5 }, presence: true
+  validates :user, presence: true  
 end

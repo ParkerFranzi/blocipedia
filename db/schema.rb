@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20140110225603) do
+=======
+ActiveRecord::Schema.define(:version => 20140110235240) do
+>>>>>>> 0958604b7b68f936982609547f1aff0c33dbb025
 
   create_table "collaboration", :force => true do |t|
     t.integer  "user_id"
