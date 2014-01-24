@@ -1,12 +1,10 @@
 class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
-  attr_accessible :body, :title, :public, :user_ids, :user_ids => []
-  belongs_to :user
-<<<<<<< HEAD
 
-=======
->>>>>>> 0958604b7b68f936982609547f1aff0c33dbb025
+  attr_accessible :body, :title, :public, :user_ids, :user_ids => []
+  
+  belongs_to :user
   has_many :post_collaborations
   has_many :users, through: :post_collaborations
 
