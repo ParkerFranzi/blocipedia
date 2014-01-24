@@ -6,7 +6,7 @@ Blocipedia::Application.routes.draw do
   resources :posts
   resources :users, only: [:show] # create a route for users#show
 
-  match "about" => 'welcome#about', via: :get
+  get "about" => 'welcome#about'
 
   root to: 'welcome#index'
 
